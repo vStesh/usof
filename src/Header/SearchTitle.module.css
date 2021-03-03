@@ -1,0 +1,7 @@
+.searchform {
+    width: 100%;
+}
+.input {
+    padding: 4px 15px;
+    width: calc(100% - 32px);
+}
