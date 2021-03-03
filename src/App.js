@@ -17,6 +17,7 @@ import Landing from './Landing';
 import Home from './Home';
 
 function App() {
+ 
   return (
     <Router>
       <div className="wrapper">
@@ -24,9 +25,9 @@ function App() {
         <Header />
         
         <div className="main">
-        <Landing />
-          {/* <Bar />
-          <Main /> */}
+        {/* <Landing /> */}
+          <Bar />
+          <Main />
         </div>
         <Footer />
       </div>
