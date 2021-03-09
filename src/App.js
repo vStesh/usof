@@ -14,7 +14,7 @@ import {
   useParams
 } from "react-router-dom";
 import Landing from './Landing';
-import Home from './Home';
+// import Home from './Home';
 
 function App() {
  
@@ -27,6 +27,7 @@ function App() {
         <div className="main">
         {/* <Landing /> */}
           <Bar />
+          
           <Main />
         </div>
         <Footer />

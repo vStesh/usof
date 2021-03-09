@@ -1,0 +1,17 @@
+.items {
+    width: 100%;
+    
+}
+.item {
+    width: 100%;
+    display: flex;
+}
+.cp {
+    display: flex;
+    flex-wrap: nowrap;
+}
+.votes, .answer, .views {
+    width: 50px;
+    text-align: center;
+
+}

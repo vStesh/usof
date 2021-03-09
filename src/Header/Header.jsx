@@ -37,7 +37,6 @@ let Header = (props) => {
             error: function(data) {  alert('Я не получил доступ :('); }, // Приложение не авторизовало пользователя
         });
     }
-init();
 
     return (
         <header className="header">
