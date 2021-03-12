@@ -1,22 +1,27 @@
 import React, { useState, useEffect } from 'react';
-import QuestionItem from './QuestionItem';
+import QuestionItem from './QuestionItem/QuestionItem';
 import style from './Home.module.css';
+import Sorting from './QuestionItem/Sorting';
+import * as axios from "axios";
 
-let Home = () => {
-    const [data, setData] = useState();
+let Home = (props) => {
+    // const [data, setData] = useState(props.data);
     const [done, setDone] = useState(false);
-
-    let url = 'https://api.stackexchange.com/2.2/questions?pagesize=50&order=desc&sort=activity&site=stackoverflow'
     
-    // useEffect(() => {
-    //     fetch(url)
-    //     .then(result => result.json())
-    //     .then(
-    //         (result) => {
-    //         setData(result.items);
+    //const [url, setUrl] = useState(`https://api.stackexchange.com/2.2/questions?pagesize=50&order=${props.sort.order}&sort=${props.sort.type}&site=stackoverflow`);
+    let url = `https://api.stackexchange.com/2.2/questions?pagesize=50&order=${props.sortOrder}&sort=${props.sortType}&site=stackoverflow`;
+    console.log('url ' + url);
+
+    useEffect(() => {
+        fetch(url)
+        .then(result => result.json())
+        .then(
+            (result) => {
+                console.log(result);
+            props.setData(result.items);
             
-    //     });
-    // }, []);
+        });
+    }, []);
 
     let dataNew = [
         {"tags":["c#","powershell","runspace"],"owner":{"reputation":11,"user_id":15362849,"user_type":"registered","profile_image":"https://www.gravatar.com/avatar/ea77df60b3ac16633709c8b8caf68ab5?s=128&d=identicon&r=PG&f=1","display_name":"Steffen","link":"https://stackoverflow.com/users/15362849/steffen"},"is_answered":false,"view_count":12,"answer_count":1,"score":1,"last_activity_date":1615314780,"creation_date":1615313147,"question_id":66552403,"content_license":"CC BY-SA 4.0","link":"https://stackoverflow.com/questions/66552403/c-powershell-in-runspace-how-can-i-get-format-list-to-work","title":"C# Powershell in Runspace - How can i get &quot;Format-List&quot; to work?"},
@@ -42,20 +47,22 @@ let Home = () => {
         {"tags":["algorithm","data-structures","graph"],"owner":{"reputation":1,"user_id":15305254,"user_type":"registered","profile_image":"https://lh3.googleusercontent.com/a-/AOh14Gh2bT_2a0RWGMQlFD845LDZimT-Ep7k-DBStDm5=k-s128","display_name":"Tejas Kashyap","link":"https://stackoverflow.com/users/15305254/tejas-kashyap"},"is_answered":false,"view_count":27,"answer_count":1,"score":0,"last_activity_date":1615314674,"creation_date":1614584100,"question_id":66418177,"content_license":"CC BY-SA 4.0","link":"https://stackoverflow.com/questions/66418177/peculiar-questions-in-data-structure-test","title":"Peculiar Questions In data structure Test"},{"tags":["vba"],"owner":{"reputation":1,"user_id":15362591,"user_type":"registered","profile_image":"https://lh4.googleusercontent.com/-YZRV1hV429w/AAAAAAAAAAI/AAAAAAAAAAA/AMZuucmRn-5ehdlJC5fj5GcOrHsUjCEBPg/s96-c/photo.jpg?sz=128","display_name":"VBA Noob","link":"https://stackoverflow.com/users/15362591/vba-noob"},"is_answered":false,"view_count":21,"answer_count":1,"score":0,"last_activity_date":1615314673,"creation_date":1615309994,"last_edit_date":1615313469,"question_id":66551660,"content_license":"CC BY-SA 4.0","link":"https://stackoverflow.com/questions/66551660/moving-documents-from-one-folder-to-another","title":"Moving documents from one folder to another"},{"tags":["linux","bash","shell","sh"],"owner":{"reputation":1,"user_id":10090156,"user_type":"registered","profile_image":"https://lh4.googleusercontent.com/-czDO6SCGi34/AAAAAAAAAAI/AAAAAAAABO8/Xg6Z8yznZcM/photo.jpg?sz=128","display_name":"Selman Keskin","link":"https://stackoverflow.com/users/10090156/selman-keskin"},"is_answered":true,"view_count":46,"answer_count":2,"score":0,"last_activity_date":1615314671,"creation_date":1615301637,"question_id":66549237,"content_license":"CC BY-SA 4.0","link":"https://stackoverflow.com/questions/66549237/when-the-input-is-entered-as-n-it-returns-yes-what-could-be-the-problem","title":"When the input is entered as &quot;N&quot;, it returns &quot;YES&quot;, what could be the problem?"},
         {"tags":["c#"],"owner":{"reputation":19,"user_id":5566500,"user_type":"registered","profile_image":"https://graph.facebook.com/10207533108990860/picture?type=large","display_name":"wrb","link":"https://stackoverflow.com/users/5566500/wrb"},"is_answered":true,"view_count":36,"answer_count":1,"score":0,"last_activity_date":1615314671,"creation_date":1615314308,"last_edit_date":1615314671,"question_id":66552688,"content_license":"CC BY-SA 4.0","link":"https://stackoverflow.com/questions/66552688/how-may-a-c-foreach-interator-yield-a-null-reference","title":"How may a C# foreach interator yield a null reference"},{"tags":["sql","ms-access"],"owner":{"reputation":11,"user_id":9157236,"user_type":"registered","profile_image":"https://www.gravatar.com/avatar/8f76e50b555e8d9099ee8bcf2b562b9d?s=128&d=identicon&r=PG&f=1","display_name":"sleibo","link":"https://stackoverflow.com/users/9157236/sleibo"},"is_answered":false,"view_count":18,"answer_count":1,"score":0,"last_activity_date":1615314669,"creation_date":1615306260,"last_edit_date":1615306903,"question_id":66550591,"content_license":"CC BY-SA 4.0","link":"https://stackoverflow.com/questions/66550591/msaccess-list-last-date-paid-and-sum-of-all-payments","title":"MSAccess: list last date paid and sum of all payments"},{"tags":["python","pandas"],"owner":{"reputation":241,"user_id":3436634,"user_type":"registered","accept_rate":60,"profile_image":"https://graph.facebook.com/10153528855892989/picture?type=large","display_name":"Blue Demon","link":"https://stackoverflow.com/users/3436634/blue-demon"},"is_answered":false,"view_count":8,"answer_count":0,"score":0,"last_activity_date":1615314656,"creation_date":1615314656,"question_id":66552756,"content_license":"CC BY-SA 4.0","link":"https://stackoverflow.com/questions/66552756/how-do-i-make-pandas-read-csv-ignore-separator-between-partially-quoted-values","title":"How do I make pandas read_csv ignore separator between partially quoted values?"},{"tags":["math","floating-point","ieee-754"],"owner":{"reputation":15,"user_id":13561449,"user_type":"registered","profile_image":"https://www.gravatar.com/avatar/be1e4332073e3acb95346120d0ccfae2?s=128&d=identicon&r=PG&f=1","display_name":"Johnnb","link":"https://stackoverflow.com/users/13561449/johnnb"},"is_answered":false,"view_count":15,"answer_count":2,"score":0,"last_activity_date":1615314654,"creation_date":1615312477,"question_id":66552267,"content_license":"CC BY-SA 4.0","link":"https://stackoverflow.com/questions/66552267/how-to-subtract-two-positive-ieee-754-numbers","title":"How to subtract two positive IEEE-754 numbers?"},{"tags":["oop","lua","roblox"],"owner":{"reputation":1,"user_id":15363217,"user_type":"registered","profile_image":"https://www.gravatar.com/avatar/d14cf1316ff49a84193de2c61bf6410d?s=128&d=identicon&r=PG&f=1","display_name":"imp","link":"https://stackoverflow.com/users/15363217/imp"},"is_answered":false,"view_count":3,"answer_count":0,"score":0,"last_activity_date":1615314653,"creation_date":1615314653,"question_id":66552754,"content_license":"CC BY-SA 4.0","link":"https://stackoverflow.com/questions/66552754/creating-of-a-new-object-of-a-different-class-gets-overriden-every-time-its-cre","title":"Creating of a new object of a different class gets overriden every time it&#39;s created"},{"tags":["javascript","mongoose"],"owner":{"reputation":27,"user_id":14451464,"user_type":"registered","profile_image":"https://lh5.googleusercontent.com/-LFJxn7oIpuo/AAAAAAAAAAI/AAAAAAAAAAA/AMZuucmVShkqW4ehW5hnzWs53OR8QoAvRA/s96-c/photo.jpg?sz=128","display_name":"Rui Pedro","link":"https://stackoverflow.com/users/14451464/rui-pedro"},"is_answered":false,"view_count":2,"answer_count":0,"score":0,"last_activity_date":1615314652,"creation_date":1615314652,"question_id":66552753,"content_license":"CC BY-SA 4.0","link":"https://stackoverflow.com/questions/66552753/mongoose-group-count-by-periods-of-15-seconds","title":"Mongoose Group count by periods of 15 seconds"}]
 
-  
     let items = [];
-    if(dataNew) {
-        items = dataNew.map(item => 
+    if(props.data) {
+        items = props.data.map(item => 
             <QuestionItem item={item}/>
         ); 
         console.log(items);
     }
     
-
-
+    
+    console.log('sort ' + props.sortType);
+    
     return (
         <div>
-            <div>Top Questions</div>
+            <h2>Top Questions</h2>
+
+            <Sorting getSorting={props.setSorting} sort={props.sortType + '-' + props.sortOrder}/>
             <div className={style.items}>
                 { items }
             </div>
