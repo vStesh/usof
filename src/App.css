@@ -56,3 +56,9 @@
   /* width: 100%; */
 }
 path{ fill:inherit; stroke:inherit; }
+.item_hover {
+  transform: scale(1);
+  width: 300px;
+  height: 200px;
+  background: grey;
+}

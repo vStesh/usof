@@ -1,7 +1,8 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import style from './../Home.module.css';
+import style from './Questions.module.css';
 import Tags from './Tags';
+
 
 const QuestionItem = (props) => {
     let startedText = () => { 
@@ -34,7 +35,7 @@ const QuestionItem = (props) => {
                 </div>
             </div>
             <div className={style.summary}>
-                <NavLink to={"Questions/" + props.item.question_id}>
+                <NavLink to={"/questions/" + props.item.question_id}>
                     <div className={style.title}>{props.item.title}</div>
                 </NavLink>
                 <Tags tags={props.item.tags} />

@@ -1,0 +1,80 @@
+.items {
+    width: 100%;
+    
+}
+.item {
+    /* width: 100%; */
+    display: flex;
+    padding: 10px;
+    border-bottom: 1px solid #e0e0e0;
+}
+.cp {
+    display: flex;
+    flex-wrap: nowrap;
+}
+.votes, .answer, .views {
+    width: 50px;
+    text-align: center;
+    font-size: 10px;
+}
+.counts {
+    font-size: 16px;
+    padding-bottom: 5px;
+    padding-top: 5px;
+}
+.answered {
+    border: 1px solid green;
+    border-radius: 5px;
+}
+h2 {
+    padding-left: 20px;
+}
+.sorting {
+    border-bottom: 1px solid #e0e0e0;
+    padding: 5px;
+}
+.sorting span {
+    cursor: pointer;
+}
+.activesort {
+    background: greenyellow;
+}
+.items {
+    width: 100%;
+}
+.summary {
+    display: inline-block;
+    flex: 1 1 auto;
+    margin-left: 10px;
+}
+.title {
+    width: 100%;
+    font-weight: 600;
+    padding-bottom: 10px;
+    text-align: left;
+}
+.tags {
+    display: inline-block;
+    float: left;
+    flex-wrap: wrap;
+}
+.tag {
+    float: left;
+    padding: 5px 8px;
+    background-color: rgb(198, 231, 198);
+    border-radius: 5px;
+    margin-right: 5px;
+    font-size: 10px;
+}
+.started {
+    display: flex;
+    float: right;
+    font-size: 12px;
+}
+.owner {
+    margin-left: 0.3em;
+}
+.reputation {
+    margin-left: 0.3em;
+    font-weight: 600;
+}

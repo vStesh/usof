@@ -1,0 +1,81 @@
+.headerline {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 15px;
+    margin-bottom: 20px;
+}
+.input {
+    padding: 5px 10px;
+}
+.items {
+    display: flex;
+    flex-wrap: wrap;
+}
+.item {
+    display: flex;
+    width: calc(25% - 35px);
+    padding: 5px 10px 15px 25px;
+}
+@media(max-width:1199px) {
+    .item {
+        display: flex;
+        width: calc(33% - 25px);
+        padding: 5px 10px 10px 15px;
+    }
+}
+@media(max-width:919px) {
+    .item {
+        display: flex;
+        width: calc(50% - 25px);
+        padding: 5px 10px 10px 15px;
+    }
+}
+
+.avatar {
+
+    width: 60px;
+    height: 60px;
+    border-radius: 5px;
+    overflow:hidden;
+}
+.img {
+    width: 100%;
+}
+.about {
+    margin-left: 15px;
+}
+.name {
+    font-size: 14px;
+}
+.name a {
+    text-decoration: none;
+}
+.location {
+    font-size: 12px;
+}
+.reputation {
+    font-size: 12px;
+    font-weight: 600;
+}
+.tags {
+    font-size: 12px;
+}
+.tag {
+    background-color: rgb(198, 231, 198);
+    /* margin-le: 5px; */
+    padding: 0 5px;
+    border-radius: 3px;
+}
+.tag:nth-child(n + 2) {
+    margin-left: 5px;
+}
+.sorting {
+    /* border-bottom: 1px solid #e0e0e0; */
+    padding: 5px;
+}
+.sorting span {
+    cursor: pointer;
+}
+.activesort {
+    background: greenyellow;
+}
