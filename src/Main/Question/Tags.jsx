@@ -4,7 +4,9 @@ import style from './Questions.module.css';
 let Tags = (props) => {
 
     let getTags = (item, key) => {
-        return props.tags.map(tag => <a href="#"><div className={style.tag} key={key}>{tag}</div></a>);
+        if(props.tags) {
+           return props.tags.map(tag => <a href="#"><div className={style.tag} key={key}>{tag}</div></a>); 
+        }   
     }
 
     return (

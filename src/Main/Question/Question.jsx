@@ -9,6 +9,7 @@ import {
   } from "react-router-dom";
 import style from './Questions.module.css';
 import QuestionItem from './QuestionItem';
+import Tags from './Tags';
 
 let Question = (props) => {
 
@@ -20,8 +21,9 @@ let Question = (props) => {
     }
     let { id } = useParams();
     console.log(id);
-
-    let url = `https://api.stackexchange.com/2.2/questions/${id}?pagesize=50&order=${sort.order}&sort=${sort.type}&site=stackoverflow&filter=!9_bDDx5Ia&key=4bo*OgdhgS9algrG4b2fPg((`;
+    let filter = '!)rTkraV*-SpZ93LKuqvq';
+    // let filter = '!Fq.Df6MYBZzXtesLV.EN0kD4k-';
+    let url = `https://api.stackexchange.com/2.2/questions/${id}?site=stackoverflow&filter=${filter}&key=4bo*OgdhgS9algrG4b2fPg((`;
 
     useEffect(() => {
         fetch(url)
@@ -36,15 +38,42 @@ let Question = (props) => {
     
     console.log(data);
 
+    const formatDate = (date) => {
+        let asked = new Date(date * 1000);
+        let displayDate =  `
+            ${asked.getFullYear()}-${asked.getMonth() < 10 ? "0" + asked.getMonth() : asked.getMonth()}-${asked.getDate() < 10 ? "0" + asked.getDate() : asked.getDate()} `;
+        return displayDate;
+    }
+
     return (
         <div class={style.container}>
             <div className={style.header}>
                 <h2>{data.title}</h2>
-                <div className={style.info}>Asked 5 years, 6 months ago Active today Viewed 76k times</div>
+                <div className={style.info}>Asked { formatDate(data.creation_date) }</div>
             </div>
-            
-            <div>{data.title}</div>
-            <div>{data.body_markdown}</div>
+            <div className={style.main}>
+                <div className={style.asside}>
+                    <div className={style.vote}>
+                        <svg aria-hidden="true" class="m0 svg-icon iconArrowUpLg" width="36" height="36" viewBox="0 0 36 36"><path d="M2 26h32L18 10 2 26z"></path></svg>
+                    </div>
+                    <div>{data.score}</div>
+                    <div className={style.vote}>
+                        <svg aria-hidden="true" class="m0 svg-icon iconArrowDownLg" width="36" height="36" viewBox="0 0 36 36"><path d="M2 10h32L18 26 2 10z"></path></svg>
+                    </div>
+                </div>
+                <div className={style.body}>
+                    
+                        <div dangerouslySetInnerHTML={{__html: data.body}}></div>
+                    
+                    
+                    <div className={style.tags}>
+                        <Tags tags={data.tags}/>
+                    </div>
+                </div>
+            </div>
+            <div className={style.comments}>
+                
+            </div>
         </div>
     );
 }

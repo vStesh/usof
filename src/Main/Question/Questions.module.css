@@ -88,3 +88,18 @@ h2 {
     border-bottom: 1px solid #eee;
     padding-bottom: 15px;
 }
+.tags {
+    margin-top: 10px;
+}
+.main {
+    margin-top: 10px;
+    display: flex;
+}
+.asside {
+    text-align: center;
+    margin: 0 20px;
+}
+.vote {
+    fill: gray;
+    cursor: pointer;
+}
